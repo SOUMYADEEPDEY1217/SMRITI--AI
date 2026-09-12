@@ -6,15 +6,24 @@ firebase-admin>=6.5
 google-cloud-firestore>=2.16
 cloudinary>=1.40
 slowapi>=0.1.9
-httpx>=0.27              # used for the Ollama local-fallback HTTP calls
-insightface>=0.7.3
+httpx>=0.27
 onnxruntime>=1.18
 numpy>=1.26
 Pillow>=10.3
-google-generativeai>=0.7   # REQUIRED - primary vision path
-python-multipart>=0.0.9    # required by FastAPI for UploadFile/Form
-pytest>=8.2   # for smoke_test.py / future tests
-gTTS>=2.5     # for text-to-speech voice support
+google-generativeai>=0.7
+python-multipart>=0.0.9
+pytest>=8.2
+gTTS>=2.5
 email-validator>=2.1.1
 PyJWT>=2.8.0
-passlib[bcrypt]>=1.7.4
+
+# --- UPDATED: Passlib & Bcrypt Fix ---
+# Passlib is unmaintained and breaks with bcrypt 4.x. 
+# It is highly recommended to use pure bcrypt instead of passlib.
+bcrypt>=4.2.0
+
+# --- UPDATED: InsightFace Size Reduction ---
+# InsightFace automatically pulls in 'opencv-python' (which includes heavy GUI tools).
+# Explicitly forcing the headless version helps prevent installing both GUI and headless libraries.
+opencv-python-headless>=4.9.0.80
+insightface>=0.7.3
